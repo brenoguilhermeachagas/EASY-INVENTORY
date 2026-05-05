@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dispositivos</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        display: flex;
+        background: #f4f6f9;
+    }
+
+    .logo {
+    width: 140px;
+    border-radius: 10px;
+    }
+
+    .sidebar {
+        width: 220px;
+        height: 100vh;
+        background: #5f12a2;
+        color: white;
+        padding: 20px;
+    }
+
+    .sidebar a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        margin: 15px 0;
+    }
+
+    .sidebar a:hover {
+        color: #38bdf8;
+    }
+
+    .main {
+        flex: 1;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background: #1e293b;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background: #f1f5f9;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <img src="https://files.catbox.moe/ota676.png" class="logo">
+    <a href="index.html">Dashboard</a>
+    <a href="dispositivos.html">Dispositivos</a>
+</div>
+
+<div class="main">
+    <h1>Lista de Dispositivos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>PC</th>
+                <th>Laboratório</th>
+                <th>Hardware</th>
+                <th>Software</th>
+                <th>Última Revisão</th>
+            </tr>
+        </thead>
+        <tbody id="lista">
+        </tbody>
+    </table>
+</div>
+
+<script>
+const pcs = [
+    {
+        nome: "PC-01",
+        lab: "Lab Informática 1",
+        hardware: "i5, 8GB RAM, SSD 240GB",
+        software: "Windows 10, Office, Chrome",
+        revisao: "10 dias atrás"
+    },
+    {
+        nome: "PC-02",
+        lab: "Lab Informática 1",
+        hardware: "i3, 4GB RAM, HD 500GB",
+        software: "Windows 10, LibreOffice",
+        revisao: "25 dias atrás"
+    },
+    {
+        nome: "PC-15",
+        lab: "Lab Informática 2",
+        hardware: "Ryzen 5, 16GB RAM, SSD 480GB",
+        software: "Windows 11, VS Code",
+        revisao: "3 dias atrás"
+    },
+    {
+        nome: "PC-16",
+        lab: "Lab Informática 233",
+        hardware: "Ryzen 7 13000, 157GB RAM, SSD 12TB",
+        software: "Windows 11, VS Code",
+        revisao: "1 dia atrás"
+    }
+];
+
+const tabela = document.getElementById("lista");
+
+pcs.forEach(pc => {
+    tabela.innerHTML += `
+        <tr>
+            <td>${pc.nome}</td>
+            <td>${pc.lab}</td>
+            <td>${pc.hardware}</td>
+            <td>${pc.software}</td>
+            <td>${pc.revisao}</td>
+        </tr>
+    `;
+});
+</script>
+
+</body>
+</html>

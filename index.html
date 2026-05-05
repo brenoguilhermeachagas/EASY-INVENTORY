@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMM Dashboard umj</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        background-color: #ffffff;
+    }
+
+    .logo {
+    width: 140px;
+    border-radius: 10px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 220px;
+        height: 100vh;
+        background-color: #1e293b;
+        color: white;
+        padding: 20px;
+    }
+
+    .sidebar h2 {
+        text-align: center;
+    }
+
+    .sidebar a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        margin: 15px 0;
+    }
+
+    .sidebar a:hover {
+        color: #38bdf8;
+    }
+
+    /* Main */
+    .main {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .cards {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        flex: 1;
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+    }
+
+    .online { background: #22c55e; }
+    .offline { background: #ef4444; }
+    .warning { background: #f59e0b; }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background: #1e293b;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background: #f1f5f9;
+    }
+
+    .status {
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .status-online { background: #22c55e; }
+    .status-offline { background: #ef4444; }
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <img src="https://files.catbox.moe/ota676.png" class="logo">
+    <a href="#">Dashboard</a>
+    <a href="dispositivos.html">Dispositivos da UMJ</a>
+    <a href="#">Alertas</a>
+    <a href="#">Relatórios</a>
+    <a href="#">Configurações</a>
+    <a href="#">encamihar para TI</a>
+</div>
+
+<!-- Main -->
+<div class="main">
+    <h1>Painel de Monitoramento computadores UMJ</h1>
+
+    <!-- Cards -->
+    <div class="cards">
+        <div class="card online">
+            <h2 id="onlineCount">0</h2>
+            <p>Dispositivos Online</p>
+        </div>
+
+        <div class="card offline">
+            <h2 id="offlineCount">0</h2>
+            <p>Dispositivos Offline</p>
+        </div>
+
+        <div class="card warning">
+            <h2>2</h2>
+            <p>Alertas</p>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>IP</th>
+                <th>Status</th>
+                <th>Uso CPU</th>
+                <th>Uso RAM</th>
+            </tr>
+        </thead>
+        <tbody id="deviceTable">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const devices = [
+        { nome: "PC-01-LAB-01", ip: "192.168.0.1", status: "online", cpu: "35%", ram: "60%" },
+        { nome: "PC-Recepcao", ip: "192.168.0.10", status: "offline", cpu: "-", ram: "-" },
+        { nome: "Notebook-ADM", ip: "192.168.0.15", status: "online", cpu: "50%", ram: "70%" },
+        { nome: "PC-03-LAB-01", ip: "192.168.0.15", status: "online", cpu: "50000%", ram: "7000%" },
+        { nome: "PC-02-LAB-04", ip: "192.168.0.15", status: "online", cpu: "20%", ram: "7%" },
+        { nome: "PC-01-LAB-05", ip: "192.168.0.15", status: "online", cpu: "10000000000%", ram: "780%" }
+        
+    
+    ];
+
+    const table = document.getElementById("deviceTable");
+    let online = 0;
+    let offline = 0;
+
+    devices.forEach(d => {
+        let row = `
+            <tr>
+                <td>${d.nome}</td>
+                <td>${d.ip}</td>
+                <td><span class="status status-${d.status}">${d.status}</span></td>
+                <td>${d.cpu}</td>
+                <td>${d.ram}</td>
+            </tr>
+        `;
+        table.innerHTML += row;
+
+        if (d.status === "online") online++;
+        else offline++;
+    });
+
+    document.getElementById("onlineCount").innerText = online;
+    document.getElementById("offlineCount").innerText = offline;
+</script>
+
+</body>
+</html>
