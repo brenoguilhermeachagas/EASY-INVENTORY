@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alertas RMM</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    display:flex;
+    background:#0f172a;
+    color:white;
+}
+
+/* MENU */
+
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#1e293b;
+    padding:20px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    margin:15px 0;
+}
+
+.sidebar a:hover{
+    color:#38bdf8;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    padding:20px;
+}
+
+h1{
+    margin-bottom:30px;
+}
+
+/* GRID ALERTAS */
+
+.alert-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:20px;
+}
+
+/* ALERTAS */
+
+.alert{
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.alert:hover{
+    transform:scale(1.03);
+}
+
+/* RISCO ALTO */
+
+.high{
+    background:#dc2626;
+    animation:piscando 1s infinite;
+}
+
+/* RISCO BAIXO */
+
+.low{
+    background:#eab308;
+    color:black;
+}
+
+/* ANIMAÇÃO */
+
+@keyframes piscando{
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.4;
+    }
+
+    100%{
+        opacity:1;
+    }
+}
+
+.info{
+    margin-top:10px;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<div class="sidebar">
+    <h2>RMM</h2>
+
+    <a href="index.html">Dashboard</a>
+    <a href="dispositivos.html">Dispositivos</a>
+    <a href="alertas.html">Alertas</a>
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <h1>⚠ Alertas do Sistema</h1>
+
+    <div class="alert-grid">
+
+        <!-- ALERTA ALTO -->
+
+        <div class="alert high">
+            <h2>PC-01</h2>
+
+            <div class="info">
+                <p><strong>Sala:</strong> Laboratório 1</p>
+                <p><strong>Problema:</strong> CPU em 98%</p>
+                <p><strong>Status:</strong> RISCO ALTO</p>
+            </div>
+        </div>
+
+        <!-- ALERTA BAIXO -->
+
+        <div class="alert low">
+            <h2>PC-07</h2>
+
+            <div class="info">
+                <p><strong>Sala:</strong> Laboratório 2</p>
+                <p><strong>Problema:</strong> Pouco espaço em disco</p>
+                <p><strong>Status:</strong> BAIXO RISCO</p>
+            </div>
+        </div>
+
+        <!-- ALERTA ALTO -->
+
+        <div class="alert high">
+            <h2>PC-15</h2>
+
+            <div class="info">
+                <p><strong>Sala:</strong> Laboratório Redes</p>
+                <p><strong>Problema:</strong> Sem conexão</p>
+                <p><strong>Status:</strong> RISCO ALTO</p>
+            </div>
+        </div>
+
+        <!-- ALERTA BAIXO -->
+
+        <div class="alert low">
+            <h2>PC-03</h2>
+
+            <div class="info">
+                <p><strong>Sala:</strong> Administração</p>
+                <p><strong>Problema:</strong> Atualização pendente</p>
+                <p><strong>Status:</strong> BAIXO RISCO</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
